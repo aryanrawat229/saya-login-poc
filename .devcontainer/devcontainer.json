@@ -1,0 +1,12 @@
+{
+  "name": "Saya Login POC",
+  "image": "mcr.microsoft.com/playwright:v1.48.0-jammy",
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-playwright.playwright"
+      ]
+    }
+  }
+}

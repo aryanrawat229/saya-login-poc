@@ -1,0 +1,13 @@
+{
+  "name": "saya-login-poc",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test",
+    "codegen": "npx playwright codegen $BASE_URL"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "dotenv": "^16.0.0"
+  }
+}
