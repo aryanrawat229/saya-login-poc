@@ -2,16 +2,20 @@ export class LoginPage {
   constructor(page) {
     this.page = page;
 
-    // TODO: replace with real selectors from codegen (npx playwright codegen <BASE_URL>)
-    this.phoneInput = page.getByPlaceholder('Enter mobile number');
-    this.sendOtpButton = page.getByRole('button', { name: /send otp/i });
-    this.otpInput = page.getByPlaceholder('Enter OTP');
-    this.verifyButton = page.getByRole('button', { name: /verify/i });
-    this.userGreeting = page.getByTestId('user-greeting'); // post-login indicator
+    this.loginButton = page.getByRole('button', { name: 'Login/Signup' }).nth(1);
+    this.phoneInput = page.getByRole('textbox', { name: '6789' });
+    this.sendOtpButton = page.getByRole('button', { name: 'Get OTP' });
+    this.otpChar1 = page.getByRole('textbox', { name: 'Please enter OTP character 1' });
+    this.otpChar2 = page.getByRole('textbox', { name: 'Please enter OTP character 2' });
+    this.otpChar3 = page.getByRole('textbox', { name: 'Please enter OTP character 3' });
+    this.otpChar4 = page.getByRole('textbox', { name: 'Please enter OTP character 4' });
+    this.verifyButton = page.getByRole('button', { name: 'Verify' });
+    this.userGreeting = page.getByText('Hey, User !'); // TODO: replace with a post-login element once known
   }
 
   async goto() {
-    await this.page.goto('/login');
+    await this.page.goto('/');
+    await this.loginButton.click();
   }
 
   async enterPhone(phone) {
@@ -23,7 +27,11 @@ export class LoginPage {
   }
 
   async enterOtp(otp) {
-    await this.otpInput.fill(otp);
+    const chars = otp.toString().split('');
+    await this.otpChar1.fill(chars[0]);
+    await this.otpChar2.fill(chars[1]);
+    await this.otpChar3.fill(chars[2]);
+    await this.otpChar4.fill(chars[3]);
   }
 
   async submitOtp() {
@@ -34,7 +42,6 @@ export class LoginPage {
     return this.userGreeting.isVisible();
   }
 
-  // Convenience: full login flow in one call
   async login(phone, otp) {
     await this.goto();
     await this.enterPhone(phone);

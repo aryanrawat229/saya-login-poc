@@ -12,8 +12,8 @@ test.describe('Login - happy path', () => {
     await loginPage.enterPhone(PHONE);
     await loginPage.submitPhone();
 
-    // OTP field should appear after submitting phone
-    await expect(loginPage.otpInput).toBeVisible();
+    // OTP fields should appear after submitting phone
+    await expect(loginPage.otpChar1).toBeVisible();
 
     await loginPage.enterOtp(OTP);
     await loginPage.submitOtp();
