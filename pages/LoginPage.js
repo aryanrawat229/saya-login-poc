@@ -10,7 +10,7 @@ export class LoginPage {
     this.otpChar3 = page.getByRole('textbox', { name: 'Please enter OTP character 3' });
     this.otpChar4 = page.getByRole('textbox', { name: 'Please enter OTP character 4' });
     this.verifyButton = page.getByRole('button', { name: 'Verify' });
-    this.userGreeting = page.getByText('Hey, User !'); // TODO: replace with a post-login element once known
+    this.loginSuccessToast = page.getByText('Login Successful...');
   }
 
   async goto() {
@@ -39,7 +39,7 @@ export class LoginPage {
   }
 
   async isLoggedIn() {
-    return this.userGreeting.isVisible();
+    return this.loginSuccessToast.isVisible();
   }
 
   async login(phone, otp) {

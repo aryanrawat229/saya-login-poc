@@ -19,6 +19,6 @@ test.describe('Login - happy path', () => {
     await loginPage.submitOtp();
 
     // Confirm successful login
-    await expect(loginPage.userGreeting).toBeVisible();
+    await expect(loginPage.loginSuccessToast).toBeVisible();
   });
 });
